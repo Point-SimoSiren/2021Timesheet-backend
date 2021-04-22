@@ -43,7 +43,7 @@ namespace TimesheetBackend2021.Controllers
         {
             if (op == null)
             {
-                return false;
+                return(false);
             }
 
             WorkAssignment assignment = (from w in db.WorkAssignments
@@ -53,7 +53,7 @@ namespace TimesheetBackend2021.Controllers
 
             if (assignment == null)
             {
-                return false;
+                return(false);
             }
 
             // Start
@@ -68,6 +68,7 @@ namespace TimesheetBackend2021.Controllers
                 assignment.InProgress = true;
                 assignment.WorkStartedAt = DateTime.Now.AddHours(2);
                 assignment.LastModifiedAt = DateTime.Now.AddHours(2);
+
                 db.SaveChanges();
 
 
@@ -83,7 +84,10 @@ namespace TimesheetBackend2021.Controllers
                 };
 
                 db.Timesheets.Add(newEntry);
-                return (true);
+
+                db.SaveChanges(); //<-------------- Tämä puuttui, ja siksi ei luonutkaan uutta timesheetiä. Ongelma ilmeni salakavalasti vasta STOP vaiheessa
+
+                return(true);
 
             }
 
@@ -93,14 +97,14 @@ namespace TimesheetBackend2021.Controllers
           
                 if (assignment.InProgress == false || assignment.Completed == true)
                 {
-                    return (false);
+                    return(false);
                 }
 
                 assignment.InProgress = false;
                 assignment.CompletedAt = DateTime.Now.AddHours(2);
                 assignment.Completed = true;
                 assignment.LastModifiedAt = DateTime.Now.AddHours(2);
-                //db.SaveChanges();
+                db.SaveChanges();
 
                 Timesheet ts = (from t in db.Timesheets
                                              where (t.Active == true) &&
@@ -112,7 +116,7 @@ namespace TimesheetBackend2021.Controllers
                 ts.Comments = op.Comment;
                 db.SaveChanges();
 
-                return (true);
+                return(true);
             }
 
         }
