@@ -13,7 +13,6 @@ namespace TimesheetBackend2021.Models
         }
 
         public int IdEmployee { get; set; }
-        public int? IdContractor { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PhoneNumber { get; set; }
@@ -23,7 +22,6 @@ namespace TimesheetBackend2021.Models
         public DateTime? DeletedAt { get; set; }
         public bool? Active { get; set; }
 
-        public virtual Contractor IdContractorNavigation { get; set; }
         public virtual ICollection<Timesheet> Timesheets { get; set; }
     }
 }

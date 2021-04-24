@@ -17,7 +17,6 @@ namespace TimesheetBackend2021.Models
         {
         }
 
-        public virtual DbSet<Contractor> Contractors { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Timesheet> Timesheets { get; set; }
@@ -36,29 +35,6 @@ namespace TimesheetBackend2021.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Finnish_Swedish_CI_AS");
-
-            modelBuilder.Entity<Contractor>(entity =>
-            {
-                entity.HasKey(e => e.IdContractor);
-
-                entity.Property(e => e.IdContractor).HasColumnName("Id_Contractor");
-
-                entity.Property(e => e.CompanyName).HasMaxLength(50);
-
-                entity.Property(e => e.ContactPerson).HasMaxLength(50);
-
-                entity.Property(e => e.CreatedAt).HasColumnType("datetime");
-
-                entity.Property(e => e.DeletedAt).HasColumnType("datetime");
-
-                entity.Property(e => e.EmailAddress).HasMaxLength(50);
-
-                entity.Property(e => e.LastModifiedAt).HasColumnType("datetime");
-
-                entity.Property(e => e.PhoneNumber).HasMaxLength(50);
-
-                entity.Property(e => e.VatId).HasMaxLength(50);
-            });
 
             modelBuilder.Entity<Customer>(entity =>
             {
@@ -95,18 +71,12 @@ namespace TimesheetBackend2021.Models
 
                 entity.Property(e => e.FirstName).HasMaxLength(50);
 
-                entity.Property(e => e.IdContractor).HasColumnName("Id_Contractor");
-
                 entity.Property(e => e.LastModifiedAt).HasColumnType("datetime");
 
                 entity.Property(e => e.LastName).HasMaxLength(50);
 
                 entity.Property(e => e.PhoneNumber).HasMaxLength(50);
 
-                entity.HasOne(d => d.IdContractorNavigation)
-                    .WithMany(p => p.Employees)
-                    .HasForeignKey(d => d.IdContractor)
-                    .HasConstraintName("FK_Employees_Contractors");
             });
 
             modelBuilder.Entity<Timesheet>(entity =>
@@ -123,8 +93,6 @@ namespace TimesheetBackend2021.Models
 
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
 
-                entity.Property(e => e.IdContractor).HasColumnName("Id_Contractor");
-
                 entity.Property(e => e.IdCustomer).HasColumnName("Id_Customer");
 
                 entity.Property(e => e.IdEmployee).HasColumnName("Id_Employee");
@@ -136,11 +104,6 @@ namespace TimesheetBackend2021.Models
                 entity.Property(e => e.StartTime).HasColumnType("datetime");
 
                 entity.Property(e => e.StopTime).HasColumnType("datetime");
-
-                entity.HasOne(d => d.IdContractorNavigation)
-                    .WithMany(p => p.Timesheets)
-                    .HasForeignKey(d => d.IdContractor)
-                    .HasConstraintName("FK_Timesheet_Contractor");
 
                 entity.HasOne(d => d.IdCustomerNavigation)
                     .WithMany(p => p.Timesheets)

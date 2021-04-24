@@ -53,4 +53,3 @@ C:\Users\siren\source\repos\TimesheetBackend2021\obj\Debug\net5.0\TimesheetBacke
 C:\Users\siren\source\repos\TimesheetBackend2021\obj\Debug\net5.0\ref\TimesheetBackend2021.dll
 C:\Users\siren\source\repos\TimesheetBackend2021\obj\Debug\net5.0\TimesheetBackend2021.pdb
 C:\Users\siren\source\repos\TimesheetBackend2021\obj\Debug\net5.0\TimesheetBackend2021.genruntimeconfig.cache
-C:\Users\siren\source\repos\TimesheetBackend2021\obj\Debug\net5.0\TimesheetBackend2021.csprojAssemblyReference.cache

@@ -9,7 +9,6 @@ namespace TimesheetBackend2021.Models
     {
         public int IdTimesheet { get; set; }
         public int? IdCustomer { get; set; }
-        public int? IdContractor { get; set; }
         public int? IdEmployee { get; set; }
         public int? IdWorkAssignment { get; set; }
         public DateTime? StartTime { get; set; }
@@ -20,7 +19,6 @@ namespace TimesheetBackend2021.Models
         public DateTime? DeletedAt { get; set; }
         public bool? Active { get; set; }
 
-        public virtual Contractor IdContractorNavigation { get; set; }
         public virtual Customer IdCustomerNavigation { get; set; }
         public virtual Employee IdEmployeeNavigation { get; set; }
         public virtual WorkAssignment IdWorkAssignmentNavigation { get; set; }
